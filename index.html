@@ -1,0 +1,151 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de terrenos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        #login, #panel {
+            display: none;
+            background: white;
+            padding: 20px;
+            margin: 20px auto;
+            width: 300px;
+            box-shadow: 0 0 10px rgba(red, green, blue, alpha);
+        }
+        table{
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: white;    
+        }
+        th, td{
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        th{
+            background: #333;
+            color: white;
+        }
+        .disponilbe {background: #a8e6cf;}
+        .proceso {background: #ffcc5c;}
+        .vendido {background: #ff6f69;}
+        button {
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="login">
+        <h2>Iniciar Sesión</h2>
+        <input type="text" id="user" placeholder="Usuario">
+        <input type="password" id="pass" placeholder="Contraseña">
+        <button onclick="login()">Ingresar</button>
+    </div>
+
+    <div id="panel">
+        <h2>Gestión de Terrenos</h2>
+        
+        <h3>Agregar Terreno</h3>
+        <input type="text" id="terrenoNombre" placeholder="Nombre del Terreno">
+        <button onclick="agregarTerreno()">Agregar</button>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Terreno</th>
+            <th>Estado</th>
+            <th>Acción</th>
+             </tr>
+    </thead>
+    <tbody id="terrenos">
+        <!--se generan filas dinamicment
+        -->
+    </tbody>
+</table>
+    </div>
+
+    <script>
+        // Simulación de credenciales (usuario: admin, contraseña: 1234)
+        function login() {
+            const user = document.getElementById("user").value;
+            const pass = document.getElementById("pass").value;
+            if (user === "admin" && pass === "1234") {
+                document.getElementById("login").style.display = "none";
+                document.getElementById("panel").style.display = "block";
+                renderizarTabla();
+            } else {
+                alert("Usuario o contraseña incorrectos");
+            }
+        }
+
+        // Datos iniciales
+        let terrenos = [
+            { id: 1, nombre: "Lote 101", estado: "Disponible" },
+            { id: 2, nombre: "Lote 102", estado: "Disponible" },
+            { id: 3, nombre: "Lote 103", estado: "Vendido" }
+        ];
+
+        // Función para renderizar la tabla
+        function renderizarTabla() {
+            const tbody = document.getElementById("terrenos");
+            tbody.innerHTML = "";
+            terrenos.forEach(terreno => {
+                let fila = document.createElement("tr");
+                fila.innerHTML = `
+                    <td>${terreno.id}</td>
+                    <td>${terreno.nombre}</td>
+                    <td class="${terreno.estado.toLowerCase()}">${terreno.estado}</td>
+                    <td>
+                        <button onclick="cambiarEstado(${terreno.id})">Cambiar Estado</button>
+                    </td>
+                `;
+                tbody.appendChild(fila);
+            });
+        }
+
+        // Función para cambiar el estado
+        function cambiarEstado(id) {
+            let terreno = terrenos.find(t => t.id === id);
+            if (terreno.estado === "Disponible") {
+                terreno.estado = "En Proceso";
+            } else if (terreno.estado === "En Proceso") {
+                terreno.estado = "Vendido";
+            } else {
+                alert("El terreno ya está vendido.");
+                return;
+            }
+            renderizarTabla();
+        }
+
+        // Función para agregar un nuevo terreno
+        function agregarTerreno() {
+            const nombre = document.getElementById("terrenoNombre").value;
+            if (nombre === "") {
+                alert("Ingresa un nombre para el terreno");
+                return;
+            }
+            let nuevoTerreno = {
+                id: terrenos.length + 1,
+                nombre: nombre,
+                estado: "Disponible"
+            };
+            terrenos.push(nuevoTerreno);
+            renderizarTabla();
+            document.getElementById("terrenoNombre").value = ""; 
+        }
+
+       
+        document.getElementById("login").style.display = "block";
+    </script>
+
+</body>
+</html>
