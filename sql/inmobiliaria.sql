@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-02-2025 a las 06:39:32
+-- Tiempo de generación: 19-02-2025 a las 22:53:47
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -60,6 +60,59 @@ CREATE TABLE `login` (
 INSERT INTO `login` (`usuario`, `password`) VALUES
 ('Guayaba', 'guayaba123');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `lots`
+--
+
+CREATE TABLE `lots` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `lots`
+--
+
+INSERT INTO `lots` (`id`, `name`) VALUES
+(1, 'Lote 1'),
+(2, 'Lote 2'),
+(3, 'Lote 3'),
+(4, 'Lote 4'),
+(5, 'Lote 5');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `plots`
+--
+
+CREATE TABLE `plots` (
+  `id` int(11) NOT NULL,
+  `lot_id` int(11) NOT NULL,
+  `plot_name` varchar(50) NOT NULL,
+  `location` varchar(100) NOT NULL,
+  `size` decimal(50,3) NOT NULL,
+  `status` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `plots`
+--
+
+INSERT INTO `plots` (`id`, `lot_id`, `plot_name`, `location`, `size`, `status`) VALUES
+(11, 1, 'Terreno 1', 'Ubicación A', 100.000, 'Disponible'),
+(12, 1, 'Terreno 2', 'Ubicación B', 150.000, 'Vendido'),
+(13, 2, 'Terreno 3', 'Ubicación C', 200.000, 'Apartado'),
+(14, 2, 'Terreno 4', 'Ubicación D', 120.000, 'Disponible'),
+(15, 3, 'Terreno 5', 'Ubicación E', 180.000, 'Vendido'),
+(16, 3, 'Terreno 6', 'Ubicación F', 90.000, 'Disponible'),
+(17, 4, 'Terreno 7', 'Ubicación G', 110.000, 'Apartado'),
+(18, 4, 'Terreno 8', 'Ubicación H', 130.000, 'Disponible'),
+(19, 5, 'Terreno 9', 'Ubicación I', 140.000, 'Vendido'),
+(20, 5, 'Terreno 10', 'Ubicación J', 160.000, 'Disponible');
+
 --
 -- Índices para tablas volcadas
 --
@@ -71,6 +124,19 @@ ALTER TABLE `cliente`
   ADD PRIMARY KEY (`id_cliente`);
 
 --
+-- Indices de la tabla `lots`
+--
+ALTER TABLE `lots`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `plots`
+--
+ALTER TABLE `plots`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `lot_id` (`lot_id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -79,6 +145,28 @@ ALTER TABLE `cliente`
 --
 ALTER TABLE `cliente`
   MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `lots`
+--
+ALTER TABLE `lots`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `plots`
+--
+ALTER TABLE `plots`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `plots`
+--
+ALTER TABLE `plots`
+  ADD CONSTRAINT `plots_ibfk_1` FOREIGN KEY (`lot_id`) REFERENCES `lots` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
