@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración de Lotes y Terrenos</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Administración de Lotes y Terrenos</h1>
+        
+        <div class="admin-actions">
+            <button onclick="showAddLotForm()">Agregar Lote</button>
+            <button onclick="showAddPlotForm()">Agregar Terreno</button>
+        </div>
+
+        <div id="add-lot-form" class="form-container" style="display: none;">
+            <h2>Agregar Lote</h2>
+            <form id="lotForm">
+                <label for="lotName">Nombre del Lote:</label>
+                <input type="text" id="lotName" name="lotName" required>
+                <button type="submit">Agregar</button>
+            </form>
+        </div>
+
+        <div id="add-plot-form" class="form-container" style="display: none;">
+            <h2>Agregar Terreno</h2>
+            <form id="plotForm">
+                <label for="plotLotId">Lote:</label>
+                <select id="plotLotId" name="plotLotId" required></select>
+                <label for="plotName">Nombre del Terreno:</label>
+                <input type="text" id="plotName" name="plotName" required>
+                <label for="plotLocation">Ubicación:</label>
+                <input type="text" id="plotLocation" name="plotLocation" required>
+                <label for="plotSize">Tamaño (m²):</label>
+                <input type="number" id="plotSize" name="plotSize" step="0.001" required>
+                <label for="plotStatus">Estado:</label>
+                <select id="plotStatus" name="plotStatus" required>
+                    <option value="Disponible">Disponible</option>
+                    <option value="Apartado">Apartado</option>
+                    <option value="Vendido">Vendido</option>
+                    <option value="No disponible">No disponible</option>
+                </select>
+                <button type="submit">Agregar</button>
+            </form>
+        </div>
+
+        <div id="lots-list" class="lots-list">
+            <!-- Lista de lotes y terrenos se cargará aquí -->
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>
