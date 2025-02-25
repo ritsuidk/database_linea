@@ -1,0 +1,112 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.admin-actions {
+    margin-bottom: 20px;
+}
+
+.admin-actions button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #1a73e8;
+    color: white;
+    cursor: pointer;
+}
+
+.admin-actions button:hover {
+    background-color: #1557b0;
+}
+
+.form-container {
+    margin-bottom: 20px;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-container input, .form-container select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-container button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+}
+
+.form-container button:hover {
+    background-color: #218838;
+}
+
+.lots-list {
+    margin-top: 20px;
+}
+
+.lots-list .lot-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.lots-list .lot-item h2 {
+    margin-top: 0;
+}
+
+.lots-list .plot-item {
+    margin-left: 20px;
+    padding: 10px;
+    border-left: 2px solid #ddd;
+}
+
+.lots-list .plot-item h3 {
+    margin-top: 0;
+}
+
+.lots-list .status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.lots-list .disponible {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.lots-list .vendido {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.lots-list .apartado {
+    background-color: #fff3cd;
+    color: #856404;
+}
